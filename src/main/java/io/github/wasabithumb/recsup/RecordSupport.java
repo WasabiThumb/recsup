@@ -10,6 +10,13 @@ import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Entry point for RecSup.
+ * Holds an {@link #instance() instance} and
+ * provides static helper methods.
+ * @see #isRecord(Class)
+ * @see #asRecord(Class)
+ */
 public final class RecordSupport {
 
     private static int runtimeFeatureVersion() {
@@ -53,15 +60,28 @@ public final class RecordSupport {
 
     //
 
+    /**
+     * Reports the record support provider.
+     * Will either be the {@link ReflectRecordSupportInstance} or
+     * {@code Java16RecordSupportInstance}.
+     */
     @Contract(pure = true)
     public static @NotNull RecordSupportInstance instance() {
         return INSTANCE;
     }
 
+    /**
+     * Alias for {@code .instance().isRecord(...)}
+     * @see RecordSupportInstance#isRecord(Class)
+     */
     public static boolean isRecord(@NotNull Class<?> cls) {
         return INSTANCE.isRecord(cls);
     }
 
+    /**
+     * Alias for {@code .instance().asRecord(...)}
+     * @see RecordSupportInstance#asRecord(Class)
+     */
     public static <T> @NotNull RecordClass<T> asRecord(@NotNull Class<T> cls) throws IllegalArgumentException {
         return INSTANCE.asRecord(cls);
     }
