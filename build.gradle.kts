@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "io.github.wasabithumb"
-version = "0.1.0"
+version = "0.1.1"
 description = "Java 8 library for reading Java 14+ records"
 
 repositories {

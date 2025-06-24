@@ -29,6 +29,7 @@ public interface RecordComponent extends AnnotatedElement {
      * For instance, the 2nd parameter of a record's primary constructor
      * maps to a record component with an index of 1.
      */
+    @ApiStatus.AvailableSince("0.1.1")
     int index();
 
     /**
