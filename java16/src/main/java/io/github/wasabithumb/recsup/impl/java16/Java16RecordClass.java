@@ -19,7 +19,7 @@ final class Java16RecordClass<T> extends AbstractRecordClass<T> {
 
         RecordComponent[] ret = new RecordComponent[backing.length];
         for (int i=0; i < backing.length; i++) {
-            ret[i] = new Java16RecordComponent(backing[i]);
+            ret[i] = new Java16RecordComponent(backing[i], i);
         }
 
         return ret;

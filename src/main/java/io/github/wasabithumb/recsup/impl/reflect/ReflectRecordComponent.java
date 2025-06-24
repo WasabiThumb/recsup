@@ -14,8 +14,8 @@ import java.lang.reflect.Type;
 @ApiStatus.Internal
 final class ReflectRecordComponent extends AbstractRecordComponent<AnnotatedElement> {
 
-    ReflectRecordComponent(@NotNull AnnotatedElement handle) {
-        super(handle);
+    ReflectRecordComponent(@NotNull AnnotatedElement handle, int index) {
+        super(handle, index);
     }
 
     //

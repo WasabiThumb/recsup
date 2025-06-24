@@ -24,6 +24,14 @@ public interface RecordComponent extends AnnotatedElement {
     @NotNull AnnotatedElement handle();
 
     /**
+     * Provides the position of this component within the
+     * primary constructor of the declaring record.
+     * For instance, the 2nd parameter of a record's primary constructor
+     * maps to a record component with an index of 1.
+     */
+    int index();
+
+    /**
      * Returns a {@code Method} that represents the accessor for
      * this record component
      * @see java.lang.reflect.RecordComponent#getAccessor()

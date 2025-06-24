@@ -13,8 +13,8 @@ import java.lang.reflect.Type;
 @ApiStatus.Internal
 final class Java16RecordComponent extends AbstractRecordComponent<RecordComponent> {
 
-    Java16RecordComponent(@NotNull RecordComponent handle) {
-        super(handle);
+    Java16RecordComponent(@NotNull RecordComponent handle, int index) {
+        super(handle, index);
     }
 
     //

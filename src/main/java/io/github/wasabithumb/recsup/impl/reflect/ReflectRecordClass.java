@@ -23,7 +23,7 @@ final class ReflectRecordClass<T> extends AbstractRecordClass<T> {
 
         RecordComponent[] ret = new RecordComponent[len];
         for (int i=0; i < len; i++) {
-            ret[i] = new ReflectRecordComponent((AnnotatedElement) Array.get(arr, i));
+            ret[i] = new ReflectRecordComponent((AnnotatedElement) Array.get(arr, i), i);
         }
 
         return ret;

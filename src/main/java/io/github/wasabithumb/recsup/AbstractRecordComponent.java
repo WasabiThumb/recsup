@@ -11,9 +11,11 @@ import java.lang.reflect.AnnotatedElement;
 public abstract class AbstractRecordComponent<H extends AnnotatedElement> implements RecordComponent {
 
     protected final H handle;
+    protected final int index;
 
-    protected AbstractRecordComponent(@NotNull H handle) {
+    protected AbstractRecordComponent(@NotNull H handle, int index) {
         this.handle = handle;
+        this.index = index;
     }
 
     //
@@ -21,6 +23,11 @@ public abstract class AbstractRecordComponent<H extends AnnotatedElement> implem
     @Override
     public @NotNull H handle() {
         return this.handle;
+    }
+
+    @Override
+    public int index() {
+        return this.index;
     }
 
     @Override
