@@ -9,14 +9,14 @@ via compilation of a small Java 16 stub located in the ``java16`` subproject.
 #### Gradle (Kotlin)
 ```kotlin
 dependencies {
-    implementation("io.github.wasabithumb:recsup:0.1.0")
+    implementation("io.github.wasabithumb:recsup:0.1.1")
 }
 ```
 
 #### Gradle (Groovy)
 ```groovy
 dependencies {
-    implementation 'io.github.wasabithumb:recsup:0.1.0'
+    implementation 'io.github.wasabithumb:recsup:0.1.1'
 }
 ```
 
@@ -26,7 +26,7 @@ dependencies {
     <dependency>
         <groupId>io.github.wasabithumb</groupId>
         <artifactId>recsup</artifactId>
-        <version>0.1.0</version>
+        <version>0.1.1</version>
         <scope>compile</scope>
     </dependency>
 </dependencies>
@@ -42,6 +42,11 @@ if (RecordSupport.isRecord(MyRecord.class)) {
 ```
 The ``RecordComponent`` interface provided by RecSup works identically
 to [``java.lang.reflect.RecordComponent``](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/reflect/RecordComponent.html).
+
+## Why?
+This project is mostly a fun experiment, however it does seem about **~30% faster** than
+basic reflection in some benchmarks (when testing a class for record support and 
+iterating over its components).
 
 ## License
 ```text
