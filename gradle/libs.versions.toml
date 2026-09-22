@@ -1,11 +1,16 @@
 [versions]
 junit = "5.7.1"
-annotations = "26.0.1"
+annotations = "26.1.0"
+jspecify = "1.0.1"
+indra = "4.1.0"
 
 [libraries]
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
 annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
+jspecify = { group = "org.jspecify", name = "jspecify", version.ref = "jspecify" }
 
 [plugins]
-publish = { id = "com.vanniktech.maven.publish", version = "0.32.0" }
-shadow = { id = "com.gradleup.shadow", version = "8.3.6" }
+indra-core = { id = "net.kyori.indra", version.ref = "indra" }
+indra-licenser = { id = "net.kyori.indra.licenser.spotless", version.ref = "indra" }
+indra-publishing = { id = "net.kyori.indra.publishing", version.ref = "indra" }
+indra-sonatype = { id = "net.kyori.indra.publishing.sonatype", version.ref = "indra" }

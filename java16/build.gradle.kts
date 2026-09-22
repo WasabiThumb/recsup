@@ -1,28 +1,29 @@
 
 plugins {
-    id("java-library")
+    alias(libs.plugins.indra.core)
+    alias(libs.plugins.indra.licenser)
 }
+
+description = "Java 16 components for RecSup (included in main artifact)"
 
 repositories {
     mavenCentral()
 }
 
+indra {
+    javaVersions {
+        target(16)
+        minimumToolchain(25)
+    }
+}
+
+indraSpotlessLicenser {
+    licenseHeaderFile(rootProject.file("license_header.txt"))
+    newLine(true)
+}
+
 dependencies {
-    compileOnly(libs.annotations)
+    api(libs.annotations)
+    api(libs.jspecify)
     compileOnly(rootProject)
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_16
-    targetCompatibility = JavaVersion.VERSION_16
-    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
-}
-
-tasks.compileJava {
-    options.encoding = "UTF-8"
-}
-
-tasks.javadoc {
-    options.encoding = Charsets.UTF_8.name()
-    (options as CoreJavadocOptions).addBooleanOption("Xdoclint:none", true)
 }
