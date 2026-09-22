@@ -62,7 +62,7 @@ mavenPublishing {
     pom {
         name.set("RecSup")
         description.set(project.description!!)
-        inceptionYear.set("2025")
+        inceptionYear.set("2026")
         url.set("https://github.com/WasabiThumb/recsup")
         licenses {
             license {
