@@ -1,19 +1,20 @@
 package io.github.wasabithumb.recsup;
 
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 
+@NullMarked
 @ApiStatus.Internal
 public abstract class AbstractRecordComponent<H extends AnnotatedElement> implements RecordComponent {
 
     protected final H handle;
     protected final int index;
 
-    protected AbstractRecordComponent(@NotNull H handle, int index) {
+    protected AbstractRecordComponent(H handle, int index) {
         this.handle = handle;
         this.index = index;
     }
@@ -21,7 +22,7 @@ public abstract class AbstractRecordComponent<H extends AnnotatedElement> implem
     //
 
     @Override
-    public @NotNull H handle() {
+    public H handle() {
         return this.handle;
     }
 
@@ -31,37 +32,37 @@ public abstract class AbstractRecordComponent<H extends AnnotatedElement> implem
     }
 
     @Override
-    public boolean isAnnotationPresent(@NotNull Class<? extends Annotation> annotationClass) {
+    public boolean isAnnotationPresent(Class<? extends Annotation> annotationClass) {
         return this.handle.isAnnotationPresent(annotationClass);
     }
 
     @Override
-    public <T extends Annotation> @NotNull T @NotNull [] getAnnotationsByType(@NotNull Class<T> annotationClass) {
+    public <T extends Annotation> T[] getAnnotationsByType(Class<T> annotationClass) {
         return this.handle.getAnnotationsByType(annotationClass);
     }
 
     @Override
-    public <T extends Annotation> T getDeclaredAnnotation(@NotNull Class<T> annotationClass) {
+    public <T extends Annotation> T getDeclaredAnnotation(Class<T> annotationClass) {
         return this.handle.getDeclaredAnnotation(annotationClass);
     }
 
     @Override
-    public <T extends Annotation> @NotNull T @NotNull [] getDeclaredAnnotationsByType(@NotNull Class<T> annotationClass) {
+    public <T extends Annotation> T[] getDeclaredAnnotationsByType(Class<T> annotationClass) {
         return this.handle.getDeclaredAnnotationsByType(annotationClass);
     }
 
     @Override
-    public <T extends Annotation> @Nullable T getAnnotation(@NotNull Class<T> aClass) {
+    public <T extends Annotation> @Nullable T getAnnotation(Class<T> aClass) {
         return this.handle.getAnnotation(aClass);
     }
 
     @Override
-    public @NotNull Annotation @NotNull [] getAnnotations() {
+    public Annotation[] getAnnotations() {
         return this.handle.getAnnotations();
     }
 
     @Override
-    public @NotNull Annotation @NotNull [] getDeclaredAnnotations() {
+    public Annotation[] getDeclaredAnnotations() {
         return this.handle.getDeclaredAnnotations();
     }
 
@@ -77,7 +78,7 @@ public abstract class AbstractRecordComponent<H extends AnnotatedElement> implem
     }
 
     @Override
-    public @NotNull String toString() {
+    public String toString() {
         return this.handle.toString();
     }
 

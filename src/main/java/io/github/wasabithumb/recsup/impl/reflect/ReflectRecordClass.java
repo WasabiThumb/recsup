@@ -3,21 +3,23 @@ package io.github.wasabithumb.recsup.impl.reflect;
 import io.github.wasabithumb.recsup.AbstractRecordClass;
 import io.github.wasabithumb.recsup.RecordComponent;
 import static io.github.wasabithumb.recsup.impl.reflect.ReflectRecordUtils.*;
+
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Array;
 
+@NullMarked
 @ApiStatus.Internal
 final class ReflectRecordClass<T> extends AbstractRecordClass<T> {
 
-    ReflectRecordClass(@NotNull Class<T> handle) {
+    ReflectRecordClass(Class<T> handle) {
         super(handle);
     }
 
     @Override
-    public @NotNull RecordComponent @NotNull [] getRecordComponents() {
+    public RecordComponent[] getRecordComponents() {
         Object arr = invoke(this.handle, M_CLASS_GET_RECORD_COMPONENTS);
         int len = Array.getLength(arr);
 

@@ -2,26 +2,27 @@ package io.github.wasabithumb.recsup.impl.reflect;
 
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnknownNullability;
+import org.jspecify.annotations.NullMarked;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+@NullMarked
 @ApiStatus.Internal
 final class ReflectRecordUtils {
 
     static final boolean OK;
-    static final Method M_CLASS_GET_RECORD_COMPONENTS;
-    static final Method M_CLASS_IS_RECORD;
-    static final Method M_RECORD_COMPONENT_GET_ACCESSOR;
-    static final Method M_RECORD_COMPONENT_GET_ANNOTATED_TYPE;
-    static final Method M_RECORD_COMPONENT_GET_DECLARING_RECORD;
-    static final Method M_RECORD_COMPONENT_GET_GENERIC_SIGNATURE;
-    static final Method M_RECORD_COMPONENT_GET_GENERIC_TYPE;
-    static final Method M_RECORD_COMPONENT_GET_NAME;
-    static final Method M_RECORD_COMPONENT_GET_TYPE;
-    static final Throwable INIT_ERROR;
+    static final @UnknownNullability Method M_CLASS_GET_RECORD_COMPONENTS;
+    static final @UnknownNullability Method M_CLASS_IS_RECORD;
+    static final @UnknownNullability Method M_RECORD_COMPONENT_GET_ACCESSOR;
+    static final @UnknownNullability Method M_RECORD_COMPONENT_GET_ANNOTATED_TYPE;
+    static final @UnknownNullability Method M_RECORD_COMPONENT_GET_DECLARING_RECORD;
+    static final @UnknownNullability Method M_RECORD_COMPONENT_GET_GENERIC_SIGNATURE;
+    static final @UnknownNullability Method M_RECORD_COMPONENT_GET_GENERIC_TYPE;
+    static final @UnknownNullability Method M_RECORD_COMPONENT_GET_NAME;
+    static final @UnknownNullability Method M_RECORD_COMPONENT_GET_TYPE;
+    static final @UnknownNullability Throwable INIT_ERROR;
     static {
         boolean ok = true;
         Class<?> cRecordComponent;
@@ -68,8 +69,8 @@ final class ReflectRecordUtils {
     //
 
     static @UnknownNullability Object invoke(
-            @NotNull Object target,
-            @NotNull @MagicConstant(valuesFromClass = ReflectRecordUtils.class) Method method
+            Object target,
+            @MagicConstant(valuesFromClass = ReflectRecordUtils.class) Method method
     ) {
         try {
             return method.invoke(target);

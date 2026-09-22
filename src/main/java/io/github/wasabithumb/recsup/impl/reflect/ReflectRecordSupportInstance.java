@@ -3,12 +3,14 @@ package io.github.wasabithumb.recsup.impl.reflect;
 import io.github.wasabithumb.recsup.RecordClass;
 import io.github.wasabithumb.recsup.RecordSupportInstance;
 import static io.github.wasabithumb.recsup.impl.reflect.ReflectRecordUtils.*;
+
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@NullMarked
 @ApiStatus.Internal
 public final class ReflectRecordSupportInstance implements RecordSupportInstance {
 
@@ -22,12 +24,12 @@ public final class ReflectRecordSupportInstance implements RecordSupportInstance
     //
 
     @Override
-    public boolean isRecord(@NotNull Class<?> cls) {
+    public boolean isRecord(Class<?> cls) {
         return OK && Boolean.TRUE.equals(invoke(cls, M_CLASS_IS_RECORD));
     }
 
     @Override
-    public @NotNull <T> RecordClass<T> asRecord(@NotNull Class<T> cls) throws IllegalArgumentException {
+    public <T> RecordClass<T> asRecord(Class<T> cls) throws IllegalArgumentException {
         if (!this.isRecord(cls)) {
             throw new IllegalArgumentException("Class " + cls.getName() + " is not a record");
         }

@@ -2,8 +2,8 @@ package io.github.wasabithumb.recsup;
 
 import io.github.wasabithumb.recsup.impl.reflect.ReflectRecordSupportInstance;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -17,6 +17,7 @@ import java.util.logging.Logger;
  * @see #isRecord(Class)
  * @see #asRecord(Class)
  */
+@NullMarked
 public final class RecordSupport {
 
     private static int runtimeFeatureVersion() {
@@ -66,7 +67,7 @@ public final class RecordSupport {
      * {@code Java16RecordSupportInstance}.
      */
     @Contract(pure = true)
-    public static @NotNull RecordSupportInstance instance() {
+    public static RecordSupportInstance instance() {
         return INSTANCE;
     }
 
@@ -74,7 +75,7 @@ public final class RecordSupport {
      * Alias for {@code .instance().isRecord(...)}
      * @see RecordSupportInstance#isRecord(Class)
      */
-    public static boolean isRecord(@NotNull Class<?> cls) {
+    public static boolean isRecord(Class<?> cls) {
         return INSTANCE.isRecord(cls);
     }
 
@@ -82,7 +83,7 @@ public final class RecordSupport {
      * Alias for {@code .instance().asRecord(...)}
      * @see RecordSupportInstance#asRecord(Class)
      */
-    public static <T> @NotNull RecordClass<T> asRecord(@NotNull Class<T> cls) throws IllegalArgumentException {
+    public static <T> RecordClass<T> asRecord(Class<T> cls) throws IllegalArgumentException {
         return INSTANCE.asRecord(cls);
     }
 
