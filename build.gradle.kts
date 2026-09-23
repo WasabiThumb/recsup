@@ -3,6 +3,19 @@ allprojects {
     apply(plugin = "java-library")
     group = "io.github.wasabithumb"
     version = "0.1.1"
+
+    tasks.withType(JavaCompile::class) {
+        // Silence "source value 8 is obsolete" - library will support java 8 for now!
+        options.compilerArgs.addAll(listOf("-Xlint:-options"))
+
+        // Silence "reference not found" - javadocs reference Java 16+ symbols despite compiling for Java 8
+        options.compilerArgs.addAll(listOf("-Xdoclint:-reference"))
+    }
+
+    tasks.withType(Javadoc::class) {
+        // Silence "reference not found" - javadocs reference Java 16+ symbols despite compiling for Java 8
+        (options as CoreJavadocOptions).addBooleanOption("Xdoclint:-reference")
+    }
 }
 
 //
@@ -65,23 +78,18 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-tasks.compileJava {
-    options.compilerArgs.addAll(listOf(
-        "-Xlint:-options", // Silence "source value 8 is obsolete" - kind of the point of the library!
-        "-Xdoclint:-reference", // Silence "reference not found" - javadocs reference Java 16+ symbols
-    ))
-}
-
-tasks.javadoc {
-    // Silence "reference not found" - javadocs reference Java 16+ symbols
-    (options as CoreJavadocOptions).addBooleanOption("Xdoclint:-reference")
-}
-
-// Add the classes of the "java16" module as a resource.
-// Similar to shading, except won't cause issues with mismatching major version.
-val impl = project(":java16")
+// Add facet classes as a resource.
+// Similar to shading but won't cause issues with mismatching major version.
+val facets = listOf(
+    project(":facets:base"),
+    project(":facets:never"),
+    project(":facets:caching"),
+    project(":facets:invoke"),
+    project(":facets:direct")
+)
 tasks.processResources {
-    val mainClasses = impl.sourceSets.main.flatMap { it.java.destinationDirectory }
-    dependsOn(impl.tasks.assemble)
-    from(mainClasses)
+    for (facet in facets) {
+        dependsOn(facet.tasks.assemble)
+        from(facet.sourceSets.main.flatMap { it.java.destinationDirectory })
+    }
 }

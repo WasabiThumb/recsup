@@ -18,29 +18,38 @@ package io.github.wasabithumb.recsup;
 
 import org.jetbrains.annotations.ApiStatus;
 import org.jspecify.annotations.NullMarked;
-import org.jspecify.annotations.Nullable;
 
 @NullMarked
-@ApiStatus.NonExtendable
-public interface RecordSupportInstance {
+@ApiStatus.Internal
+public abstract class AbstractRecordClass<T> implements RecordClass<T> {
 
-    /**
-     * Returns true if the given class is a record.
-     * Identical to {@link Class#isRecord()} from Java 16+.
-     */
-    boolean isRecord(Class<?> cls);
+    protected final Class<T> handle;
 
-    /**
-     * Wraps the given class, exposing record
-     * support methods.
-     * @throws IllegalArgumentException Class is not a {@link #isRecord(Class) record}
-     */
-    <T> RecordClass<T> asRecord(Class<T> cls) throws IllegalArgumentException;
+    protected AbstractRecordClass(Class<T> handle) {
+        this.handle = handle;
+    }
 
-    /**
-     * Wraps the given class if it is a record class,
-     * otherwise returns null.
-     */
-    <T> @Nullable RecordClass<T> whenRecord(Class<T> cls);
+    //
+
+    @Override
+    public Class<T> handle() {
+        return this.handle;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.handle.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof RecordClass<?>)) return false;
+        return this.handle.equals(((RecordClass<?>) obj).handle());
+    }
+
+    @Override
+    public String toString() {
+        return this.handle.toString();
+    }
 
 }

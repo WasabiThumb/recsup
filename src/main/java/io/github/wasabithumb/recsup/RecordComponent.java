@@ -1,3 +1,19 @@
+/*
+ * Copyright 2026 Xavier Pedraza
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package io.github.wasabithumb.recsup;
 
 import org.jetbrains.annotations.ApiStatus;
@@ -19,8 +35,8 @@ public interface RecordComponent extends AnnotatedElement {
 
     /**
      * Exposes actual {@link java.lang.reflect.RecordComponent} which this
-     * object is wrapping. The return type is {@link AnnotatedElement}, which is
-     * a superclass of {@code RecordComponent} that is available in Java 8.
+     * object is wrapping. The return type is {@link AnnotatedElement} which is
+     * a supertype of {@code RecordComponent} that is available in Java 8.
      */
     AnnotatedElement handle();
 
@@ -28,7 +44,7 @@ public interface RecordComponent extends AnnotatedElement {
      * Provides the position of this component within the
      * primary constructor of the declaring record.
      * For instance, the 2nd parameter of a record's primary constructor
-     * maps to a record component with an index of 1.
+     * corresponds to a record component with an index of 1.
      */
     @ApiStatus.AvailableSince("0.1.1")
     int index();
