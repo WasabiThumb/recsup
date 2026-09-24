@@ -93,3 +93,71 @@ tasks.processResources {
         from(facet.sourceSets.main.flatMap { it.java.destinationDirectory })
     }
 }
+
+// Add tasks to run the benchmark
+fun benchmarkSubTask(name: String, desc: String, noCache: Boolean, noDirect: Boolean): Provider<out JavaExec> {
+    val benchmarkProject = project(":benchmark")
+    return tasks.register(name, JavaExec::class) {
+        dependsOn(benchmarkProject.tasks.assemble)
+        description = desc
+        javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(25) }
+        mainClass = "io.github.wasabithumb.recsup.benchmark.Benchmark"
+        jvmArgs = listOf(
+            "-XX:+UnlockExperimentalVMOptions",
+            "-XX:+UnlockDiagnosticVMOptions",
+            "-XX:+UseEpsilonGC",
+            "-XX:+AlwaysActAsServerClassMachine",
+            "-XX:+AlwaysPreTouch",
+            "-XX:-DontCompileHugeMethods",
+            "-Xms1G",
+            "-Xmx1G",
+            "-Dio.github.wasabithumb.recsup.RecordSupport.noCache=$noCache",
+            "-Dio.github.wasabithumb.recsup.RecordSupport.noDirect=$noDirect",
+        )
+        classpath(
+            benchmarkProject.java.sourceSets.main.flatMap { it.java.destinationDirectory },
+            benchmarkProject.configurations.runtimeClasspath.map { it.files }
+        )
+        doFirst {
+            logger.lifecycle("Running benchmark \"${name}\"")
+        }
+    }
+}
+
+val benchmarkDirectUncachedTask = benchmarkSubTask(
+    "benchmarkDirectUncached",
+    "Run a benchmark (direct, uncached)",
+    noCache = true,
+    noDirect = false
+)
+
+val benchmarkDirectCachedTask = benchmarkSubTask(
+    "benchmarkDirectCached",
+    "Run a benchmark (direct, cached)",
+    noCache = false,
+    noDirect = false
+)
+
+val benchmarkInvokeUncachedTask = benchmarkSubTask(
+    "benchmarkInvokeUncached",
+    "Run a benchmark (invoke, uncached)",
+    noCache = true,
+    noDirect = true
+)
+
+val benchmarkInvokeCachedTask = benchmarkSubTask(
+    "benchmarkInvokeCached",
+    "Run a benchmark (invoke, cached)",
+    noCache = false,
+    noDirect = true
+)
+
+tasks.register("benchmark") {
+    description = "Run all benchmarks"
+    dependsOn(
+        benchmarkDirectCachedTask,
+        benchmarkDirectUncachedTask,
+        benchmarkInvokeCachedTask,
+        benchmarkInvokeUncachedTask
+    )
+}

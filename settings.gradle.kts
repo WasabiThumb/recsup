@@ -4,5 +4,6 @@ include(
     ":facets:never",
     ":facets:caching",
     ":facets:invoke",
-    ":facets:direct"
+    ":facets:direct",
+    ":benchmark"
 )

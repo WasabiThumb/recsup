@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/benchmark" />
             <option value="$PROJECT_DIR$/facets" />
             <option value="$PROJECT_DIR$/facets/base" />
             <option value="$PROJECT_DIR$/facets/caching" />
