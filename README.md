@@ -66,6 +66,9 @@ to change provider selection behavior:
 
 > [!NOTE]
 > Truthy in this context means present, non-empty, not "false" and not "0".
+> Suggested truthy values are "true" or "1". These properties support library
+> relocation and the property name must always begin with the fully qualified
+> name of the ``RecordSupport`` class that you want to configure.
 
 ## Benchmark
 General use case simulation iterating over a few classes for ~1 million iterations.
