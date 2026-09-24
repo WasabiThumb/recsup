@@ -5,11 +5,16 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="/usr/share/java/gradle" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/java16" />
+            <option value="$PROJECT_DIR$/benchmark" />
+            <option value="$PROJECT_DIR$/facets" />
+            <option value="$PROJECT_DIR$/facets/base" />
+            <option value="$PROJECT_DIR$/facets/caching" />
+            <option value="$PROJECT_DIR$/facets/direct" />
+            <option value="$PROJECT_DIR$/facets/invoke" />
+            <option value="$PROJECT_DIR$/facets/never" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -1,2 +1,9 @@
 rootProject.name = "recsup"
-include(":java16")
+include(
+    ":facets:base",
+    ":facets:never",
+    ":facets:caching",
+    ":facets:invoke",
+    ":facets:direct",
+    ":benchmark"
+)
