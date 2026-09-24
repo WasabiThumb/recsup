@@ -16,6 +16,7 @@
 
 package io.github.wasabithumb.recsup;
 
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
@@ -66,6 +67,7 @@ public final class RecordSupport {
      * Alias for {@code .instance().whenRecord(...)}
      * @see RecordSupportInstance#whenRecord(Class)
      */
+    @ApiStatus.AvailableSince("0.2.0")
     public static <T> @Nullable RecordClass<T> whenRecord(Class<T> cls) throws IllegalArgumentException {
         return INSTANCE.whenRecord(cls);
     }

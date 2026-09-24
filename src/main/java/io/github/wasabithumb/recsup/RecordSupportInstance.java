@@ -41,6 +41,7 @@ public interface RecordSupportInstance {
      * Wraps the given class if it is a record class,
      * otherwise returns null.
      */
+    @ApiStatus.AvailableSince("0.2.0")
     <T> @Nullable RecordClass<T> whenRecord(Class<T> cls);
 
 }

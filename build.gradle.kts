@@ -2,7 +2,7 @@
 allprojects {
     apply(plugin = "java-library")
     group = "io.github.wasabithumb"
-    version = "0.1.1"
+    version = "0.2.0"
 
     tasks.withType(JavaCompile::class) {
         // Silence "source value 8 is obsolete" - library will support java 8 for now!
